@@ -1,5 +1,5 @@
 /*
-Previo5. Modelado Jerarquico         José Gabriel Alfaro Fragoso
+Practica5. Modelado Jerarquico         José Gabriel Alfaro Fragoso
 Fecha de entrega: 02/03/2025                   317019450
 */
 
@@ -211,7 +211,7 @@ int main() {
 		//Model Bicep 
 		model = glm::rotate(model, glm::radians(hombro), glm::vec3(0.0f, 0.0, 1.0f)); //hombro
 		modelTemp = model = glm::translate(model, glm::vec3(0.75f, 0.0f, 0.0f)); //pivote trasladado 
-		model = glm::scale(model, glm::vec3(1.5f, 0.5f, 0.5f));
+		model = glm::scale(model, glm::vec3(1.2f, 0.5f, 0.5f));
 		color = glm::vec3(0.545f, 0.961f, 0.808f);
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
@@ -220,7 +220,7 @@ int main() {
 		//Model antebrazo 
 		model = glm::translate(modelTemp, glm::vec3(0.75f, 0.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(codo), glm::vec3(0.0f, 1.0f, 0.0f));
-		modelTemp = model = glm::translate(model, glm::vec3(.5f, 0.0f, 0.0f));
+		modelTemp = model = glm::translate(model, glm::vec3(0.35f, 0.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(1.0f, 0.5f, 0.5f));
 		color = glm::vec3(0.937f, 0.549f, 0.961f);
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
@@ -228,7 +228,7 @@ int main() {
 		glDrawArrays(GL_TRIANGLES, 0, 36);//B
 
 		//Model Palma
-		model = glm::translate(modelTemp, glm::vec3(0.40f, 0.0f, 0.0f));//distancia del antebrazo y la muñeca 
+		model = glm::translate(modelTemp, glm::vec3(0.41f, 0.0f, 0.0f));//distancia del antebrazo y la muñeca modificar disancia de dedos
 		model = glm::rotate(model, glm::radians(muneca), glm::vec3(1.0f, 0.0f, 0.0f));
 		modelTemp2= modelTemp = model = glm::translate(model, glm::vec3(0.215f, 0.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(0.25f, 0.5f, 0.5f));
@@ -240,8 +240,8 @@ int main() {
 		//Model dedo1 A
 		model = glm::translate(modelTemp, glm::vec3(-0.13f, 0.175f, 0.1875f));
 		model = glm::rotate(model, glm::radians(dedo1), glm::vec3(0.0f, 0.0f, 1.0f));
-		modelTemp = model = glm::translate(model, glm::vec3(0.5f, 0.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(0.5f, 0.15f, 0.125f));
+		modelTemp = model = glm::translate(model, glm::vec3(0.4f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.3f, 0.1f, 0.08f));
 		color = glm::vec3(1.0, 1.0f, 0.0f);
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
@@ -249,14 +249,25 @@ int main() {
 
 
 		//Model dedo1 B
-		model = glm::translate(modelTemp, glm::vec3(0.0f, 0.0f, 0.0f));
+		model = glm::translate(modelTemp, glm::vec3(-0.138f, 0.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(dedo2), glm::vec3(0.0f, 0.0f, 1.0f));
-		model = glm::translate(model, glm::vec3(0.5f, 0.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(0.5f, 0.15f, 0.125f));
+		model = glm::translate(model, glm::vec3(0.4f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.225f, 0.10f, 0.08f));
 		color = glm::vec3(1.0, 0.0f, 1.0f);
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36);//E
+
+		////Model dedo1 C
+		//model = glm::translate(modelTemp, glm::vec3(0.0f, 0.0f, 0.0f));
+		//model = glm::rotate(model, glm::radians(dedo2), glm::vec3(0.0f, 0.0f, 1.0f));
+		//model = glm::translate(model, glm::vec3(0.5f, 0.0f, 0.0f));
+		//model = glm::scale(model, glm::vec3(0.5f, 0.15f, 0.125f));
+		//color = glm::vec3(1.0, 0.0f, 1.0f);
+		//glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//glDrawArrays(GL_TRIANGLES, 0, 36);//E
+
 
 
 		glBindVertexArray(0);
@@ -306,12 +317,12 @@ int main() {
 	 if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS)
 		 muneca -= 0.05f;
 	 if (glfwGetKey(window, GLFW_KEY_U) == GLFW_PRESS)
-		 dedo1+= 0.05f;
+		 dedo1+= 0.01f;
 	 if (glfwGetKey(window, GLFW_KEY_J) == GLFW_PRESS)
-		 dedo1 -= 0.05f;
-	 if (glfwGetKey(window, GLFW_KEY_I) == GLFW_PRESS)
+		 dedo1 -= 0.01f;
+	 if (glfwGetKey(window, GLFW_KEY_U) == GLFW_PRESS)
 		 dedo2 += 0.05f;
-	 if (glfwGetKey(window, GLFW_KEY_K) == GLFW_PRESS)
+	 if (glfwGetKey(window, GLFW_KEY_J) == GLFW_PRESS)
 		 dedo2 -= 0.05f;
  }
 
