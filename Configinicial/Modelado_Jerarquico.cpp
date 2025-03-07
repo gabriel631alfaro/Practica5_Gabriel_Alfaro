@@ -254,34 +254,53 @@ int main() {
 		glDrawArrays(GL_TRIANGLES, 0, 36);//C
 
 		// Model dedo1 A (Primera falange)
-		model = glm::translate(modelTemp, glm::vec3(-0.13f, 0.175f, 0.1875f));
-		model = glm::rotate(model, glm::radians(dedo11), glm::vec3(0.0f, 0.0f, 1.0f));
-		modelTemp = model = glm::translate(model, glm::vec3(0.4f, 0.0f, 0.0f));
+		//model = glm::translate(modelTemp, glm::vec3(-0.13f, 0.175f, 0.1875f));
+		//model = glm::rotate(model, glm::radians(dedo11), glm::vec3(0.0f, 0.0f, 1.0f));
+		//modelTemp = model = glm::translate(model, glm::vec3(0.4f, 0.0f, 0.0f));
+		//model = glm::scale(model, glm::vec3(0.3f, 0.1f, 0.08f));
+		model = glm::translate(modelTemp, glm::vec3(-0.13f, 0.175f, 0.1875f)); // Punto de unión con la palma
+		model = glm::rotate(model, glm::radians(dedo11), glm::vec3(0.0f, 0.0f, 1.0f)); // Rotación en la base del dedo
+		modelTemp = model = glm::translate(model, glm::vec3(0.4f, 0.0f, 0.0f)); // Punto de unión con la segunda falange
 		model = glm::scale(model, glm::vec3(0.3f, 0.1f, 0.08f));
 		color = glm::vec3(1.0, 1.0f, 0.0f);
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36); //D
 
-		// Model dedo1 B (Segunda falange)
-		model = glm::translate(modelTemp, glm::vec3(-0.131f, 0.0f, 0.0f));
-		model = glm::rotate(model, glm::radians(dedo12), glm::vec3(0.0f, 0.0f, 1.0f));
-		modelTemp = model = glm::translate(model, glm::vec3(0.4f, 0.0f, 0.0f)); // ACTUALIZAMOS modelTemp para que dedo13 dependa de dedo12
+		// Model dedo1 A (Primera falange)
+
+
+
+		//// Model dedo1 B (Segunda falange)
+		//model = glm::translate(modelTemp, glm::vec3(-0.131f, 0.0f, 0.0f));
+		//model = glm::rotate(model, glm::radians(dedo12), glm::vec3(0.0f, 0.0f, 1.0f));
+		//modelTemp = model = glm::translate(model, glm::vec3(0.4f, 0.0f, 0.0f)); // ACTUALIZAMOS modelTemp para que dedo13 dependa de dedo12
+		//model = glm::scale(model, glm::vec3(0.225f, 0.10f, 0.08f));
+		 model = glm::translate(modelTemp, glm::vec3(-0.131f, 0.0f, 0.0f)); // Se mueve desde la primera falange
+		model = glm::rotate(model, glm::radians(dedo12), glm::vec3(0.0f, 0.0f, 1.0f)); // Rotación en la articulación
+		modelTemp = model = glm::translate(model, glm::vec3(0.225f, 0.0f, 0.0f)); // Punto de pivote de la tercera falange
 		model = glm::scale(model, glm::vec3(0.225f, 0.10f, 0.08f));
 		color = glm::vec3(1.0, 0.0f, 1.0f);
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36); //E
+		 //Model dedo1 B (Segunda falange)
 
-		// Model dedo1 C (Tercera falange) 
-		model = glm::translate(modelTemp, glm::vec3(0.225f, 0.0f, 0.0f)); // parte de la segunda falange
-		model = glm::rotate(model, glm::radians(dedo13), glm::vec3(0.0f, 0.0f, 1.0f)); // Aplica la rotación
-		model = glm::translate(model, glm::vec3(0.0f, 0.f, 0.0f)); // Ajusta la posición después de rotar
-		model = glm::scale(model, glm::vec3(0.23f, 0.10f, 0.08f)); // Ajusta el tamaño de la tercera falange
+
+
+		//// Model dedo1 C (Tercera falange) 
+		//model = glm::translate(modelTemp, glm::vec3(0.225f, 0.0f, 0.0f)); // parte de la segunda falange
+		//model = glm::rotate(model, glm::radians(dedo13), glm::vec3(0.0f, 0.0f, 1.0f)); // Aplica la rotación
+		//model = glm::translate(model, glm::vec3(0.0f, 0.f, 0.0f)); // Ajusta la posición después de rotar
+		//model = glm::scale(model, glm::vec3(0.23f, 0.10f, 0.08f)); // Ajusta el tamaño de la tercera falange
+		model = glm::translate(modelTemp, glm::vec3(0.2f, 0.0f, 0.0f)); // Se mueve desde la segunda falange
+		model = glm::rotate(model, glm::radians(dedo13), glm::vec3(0.0f, 0.0f, 1.0f)); // Rotación final del dedo
+		model = glm::scale(model, glm::vec3(0.2f, 0.10f, 0.08f));
 		color = glm::vec3(0.0, 1.0f, 1.0f); // Color cian para diferenciar
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36); // Renderizar la tercera falange
+
 
 
 		//Model dedo2 A
@@ -379,20 +398,31 @@ int main() {
 		glDrawArrays(GL_TRIANGLES, 0, 36); // Renderizar la tercera falange
 
 		// Model pulgar1 (Primera falange del pulgar)
-		model = glm::translate(modelTemp, glm::vec3(-0.32f, -0.35f, 0.1875f)); // Ajusta su posición más hacia la palma
-		model = glm::rotate(model, glm::radians(pulgar1), glm::vec3(0.0f, 1.0f, 0.0f)); // Rotación en eje Y en lugar de Z
-		modelTemp = model = glm::translate(model, glm::vec3(0.3f, 0.0f, 0.0f)); // Ajuste del pivote
-		model = glm::scale(model, glm::vec3(0.3f, 0.1f, 0.08f));
+		//model = glm::translate(modelTemp, glm::vec3(-0.32f, -0.35f, 0.1875f)); // Ajusta su posición más hacia la palma
+		//model = glm::rotate(model, glm::radians(pulgar1), glm::vec3(0.0f, 1.0f, 0.0f)); // Rotación en eje Y en lugar de Z
+		//modelTemp = model = glm::translate(model, glm::vec3(0.3f, 0.0f, 0.0f)); // Ajuste del pivote
+		//model = glm::scale(model, glm::vec3(0.3f, 0.1f, 0.08f));
+		// Model pulgar1 (Primera falange)
+		model = glm::translate(modelTemp, glm::vec3(-0.2f, -0.25f, 0.2f)); // Punto de unión con la palma
+		model = glm::rotate(model, glm::radians(pulgar1), glm::vec3(0.0f, 1.0f, 1.0f)); // Rotación en un eje inclinado
+		modelTemp = model = glm::translate(model, glm::vec3(0.3f, 0.0f, 0.0f)); // Punto de unión con la segunda falange
+		model = glm::scale(model, glm::vec3(0.25f, 0.1f, 0.08f));
+
 		color = glm::vec3(1.0, 1.0f, 0.0f);
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 
 		// Model pulgar2 (Segunda falange del pulgar)
+		//model = glm::translate(modelTemp, glm::vec3(0.08f, 0.0f, 0.0f));
+		//model = glm::rotate(model, glm::radians(pulgar2), glm::vec3(0.0f, 1.0f, 0.0f)); // Rotación en eje X para mejor realismo
+		//modelTemp = model = glm::translate(model, glm::vec3(0.2f, 0.0f, 0.0f)); // Ajuste del pivote
+		//model = glm::scale(model, glm::vec3(0.225f, 0.10f, 0.08f));
+		// Model pulgar2 (Segunda falange)
 		model = glm::translate(modelTemp, glm::vec3(0.08f, 0.0f, 0.0f));
-		model = glm::rotate(model, glm::radians(pulgar2), glm::vec3(0.0f, 1.0f, 0.0f)); // Rotación en eje X para mejor realismo
-		modelTemp = model = glm::translate(model, glm::vec3(0.2f, 0.0f, 0.0f)); // Ajuste del pivote
-		model = glm::scale(model, glm::vec3(0.225f, 0.10f, 0.08f));
+		model = glm::rotate(model, glm::radians(pulgar2), glm::vec3(0.0f, 1.0f, 1.0f)); // Rotación en eje inclinado
+		model = glm::scale(model, glm::vec3(0.2f, 0.1f, 0.08f));
+
 		color = glm::vec3(1.0, 0.0f, 1.0f);
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
